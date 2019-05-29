@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session, jsonify
+from flask import Flask, session, jsonify, redirect, url_for, render_template, request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -47,8 +47,8 @@ def index():
             return '<h1>You are logged in!</h1>'
     else:
         session.pop('logged_in', None)
-        return f'<h2>Access Denied</h2>'
+        return redirect(url_for('login'))
 
-@app.route("/register")
-def register():
-    return '<h1>This is the registration page</h1>'
+@app.route("/login")
+def login():
+    return render_template("layout.html")
