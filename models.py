@@ -75,3 +75,29 @@ class User:
             db.commit()
             return True
 
+class Books:
+    def __init__(self, title=None, isbn=None, author=None):
+        self.__searchTerms = locals()
+        del self.__searchTerms['self']
+
+        if all(not v or v is None for v in self.__searchTerms.values()):
+            print('No title, isbn or author was provided')
+            return None
+        else:
+            for key, value in self.__searchTerms.items():
+                if self.__searchTerms[key] is None or not self.__searchTerms[key]:
+                    self.__searchTerms[key] = 'ignore'
+                else:
+                    self.__searchTerms[key] = value
+        self._populateBook()
+
+    def _populateBook(self):
+        self.searchResults = db.execute("SELECT id, title, isbn, author FROM books WHERE title ILIKE :title OR isbn ILIKE :isbn OR author ILIKE :author", {"title": "%"+self.__searchTerms['title']+"%", "isbn": "%"+self.__searchTerms['isbn']+"%", "author": "%"+self.__searchTerms['author']+"%"}).fetchall()
+
+        if not self.searchResults:
+            print('no books were found')
+            return False
+        else:
+            print(self.searchResults)
+            return True
+

@@ -5,7 +5,7 @@ Register
 {% endblock %}
 
 {% block body %}
-<body class="text-center">
+<body class="login-body text-center">
 	<form class="form-signin" action="{{ url_for('register') }}" method="post">
 		<img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 		{% if message %}

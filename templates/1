@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ book.title }} Reviews
+{% endblock %}
+{% block body %}
+<body class="dash-body">
+	<!-- Navigation -->
+{% include "nav.html" %}	
+	<!-- Page Content -->
+	<div class="container">
+			<div class="row">
+			<!-- Post Content Column -->	
+			<div class="col-lg-12">	
+				<div class="card card-body bg-light" style="margin-top: 25px">
+				<div class="card-block card-text">
+					<!-- Title -->
+					<h1 class="mt-4">{{ book.title }}</h1>
+
+					<!-- Author -->
+					<p class="lead">
+					by
+					<a href="#">{{ book.author }}</a>
+					</p>
+					<p class='float-right'>5 stars</p>
+					</div>
+				</div>
+				</div>
+		<!-- /.row -->
+	</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	{% endblock %}
